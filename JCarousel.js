@@ -32,7 +32,6 @@ class Carousel {
 			this.index++;
 		}
 		this.generateQueue();
-		this.print();
 	}
 
 	prev() {
@@ -42,7 +41,6 @@ class Carousel {
 			this.index--;
 		}
 		this.generateQueue();
-		this.print();
 	}
 
 	generateQueue() {
