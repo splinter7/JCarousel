@@ -63,6 +63,6 @@ class Carousel {
 	}
 
 	print(){
-    	console.log(this.queue);
-    }
-}s
+    		console.log(this.queue);
+    	}
+}
