@@ -15,11 +15,12 @@ JCarousel takes an array of 5 or more elements and cycles through them, displayi
 
 ## Demo
 
-Open `demo.html` in your browser to see an interactive visual demonstration of the carousel. The demo includes:
+Open `demo/demo.html` in your browser to see an interactive visual demonstration of the carousel. The demo includes:
 - Visual display of the 5 items
 - Next/Previous buttons
 - Keyboard navigation (Arrow keys)
-- Real-time display of the current index and selected item
+- Smooth animations as slides transition between positions
+- Zoom controls
 
 ## Usage
 
