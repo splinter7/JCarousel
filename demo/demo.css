@@ -1,155 +1,301 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --carousel-item-size: 100px;
+  --carousel-gap: 10px;
+  --carousel-step: 110px; /* item-size + gap, kept in sync for JS */
+  --carousel-left-offset: 25px;
+  --carousel-height: 150px;
+  --carousel-display-width: 570px;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #2a2a2a;
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #2a2a2a;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
 }
 
 .container {
-    background: #2a2a2a;
-    border: 1px solid white;
-    padding: 60px 40px;
-    max-width: 900px;
-    width: 100%;
+  background: #2a2a2a;
+  border: 1px solid white;
+  padding: 60px 40px;
+  max-width: 900px;
+  width: 100%;
 }
 
 h1 {
-    text-align: center;
-    color: white;
-    margin-bottom: 10px;
-    font-size: 4em;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  text-align: center;
+  color: white;
+  margin-bottom: 10px;
+  font-size: 4em;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .subtitle {
-    text-align: center;
-    color: #b0b0b0;
-    margin-bottom: 15px;
-    font-size: 0.9em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+  text-align: center;
+  color: #b0b0b0;
+  margin-bottom: 15px;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .separator {
-    width: 100%;
-    height: 1px;
-    background: white;
-    margin: 20px 0 40px 0;
+  width: 100%;
+  height: 1px;
+  background: white;
+  margin: 20px 0 40px 0;
 }
 
 .carousel-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 50px 0;
 }
 
 .chevron {
-    background: #3a3a3a;
-    border: none;
-    color: #b0b0b0;
-    font-size: 2em;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
+  background: #3a3a3a;
+  border: none;
+  color: #b0b0b0;
+  font-size: 2em;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .chevron:hover {
-    background: #4a4a4a;
-    color: white;
+  background: #4a4a4a;
+  color: white;
 }
 
 .carousel-display {
-    position: relative;
-    width: 570px;
-    height: 150px;
-    margin: 0 auto;
-    overflow: hidden;
+  position: relative;
+  width: var(--carousel-display-width);
+  max-width: 100%;
+  height: var(--carousel-height);
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .carousel-item {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: #d0d0d0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #333;
-    cursor: default;
-    border-radius: 8px;
-    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.3s ease;
-    top: 25px;
+  position: absolute;
+  width: var(--carousel-item-size);
+  height: var(--carousel-item-size);
+  background: #d0d0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #333;
+  cursor: default;
+  border-radius: 8px;
+  transition:
+    left 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s ease;
+  top: calc((var(--carousel-height) - var(--carousel-item-size)) / 2);
 }
 
 .carousel-item.center {
-    background: #32ff32;
-    color: white;
-    z-index: 2;
-    box-shadow: 0 4px 12px rgba(50, 255, 50, 0.4);
+  background: #32ff32;
+  color: white;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(50, 255, 50, 0.4);
 }
 
 .nav-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 40px;
-    color: #b0b0b0;
-    font-size: 0.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  color: #b0b0b0;
+  font-size: 0.9em;
 }
 
 .nav-controls button {
-    background: transparent;
-    border: none;
-    color: #b0b0b0;
-    cursor: pointer;
-    font-size: 0.9em;
-    padding: 5px 10px;
-    transition: color 0.2s ease;
+  background: transparent;
+  border: none;
+  color: #b0b0b0;
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 5px 10px;
+  transition: color 0.2s ease;
 }
 
 .nav-controls button:hover {
-    color: white;
+  color: white;
 }
 
 .nav-controls .circle-btn {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #3a3a3a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2em;
-    padding: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #3a3a3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  padding: 0;
 }
 
 .nav-controls .circle-btn:hover {
-    background: #4a4a4a;
+  background: #4a4a4a;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 40px 24px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    font-size: 0.75em;
+    line-height: 1.4;
+  }
+
+  .separator {
+    margin: 16px 0 30px 0;
+  }
+
+  .carousel-wrapper {
+    gap: 8px;
+    margin: 30px 0;
+  }
+
+  .chevron {
+    width: 44px;
+    height: 44px;
+    font-size: 1.75em;
+  }
+
+  :root {
+    --carousel-item-size: 80px;
+    --carousel-gap: 8px;
+    --carousel-step: 88px;
+    --carousel-left-offset: 20px;
+    --carousel-height: 120px;
+    --carousel-display-width: 464px;
+  }
+
+  .carousel-item {
+    font-size: 2em;
+  }
+
+  .nav-controls {
+    gap: 12px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-controls button {
+    font-size: 0.85em;
+  }
+
+  .nav-controls .circle-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 1.1em;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  .container {
+    padding: 24px 16px;
+  }
+
+  h1 {
+    font-size: 1.75em;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    font-size: 0.65em;
+    line-height: 1.5;
+  }
+
+  .separator {
+    margin: 12px 0 24px 0;
+  }
+
+  .carousel-wrapper {
+    gap: 6px;
+    margin: 24px 0;
+  }
+
+  .chevron {
+    width: 38px;
+    height: 38px;
+    font-size: 1.5em;
+  }
+
+  :root {
+    --carousel-item-size: 60px;
+    --carousel-gap: 6px;
+    --carousel-step: 66px;
+    --carousel-left-offset: 12px;
+    --carousel-height: 100px;
+    --carousel-display-width: 346px;
+  }
+
+  .carousel-item {
+    font-size: 1.5em;
+    border-radius: 6px;
+  }
+
+  .nav-controls {
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .nav-controls button {
+    font-size: 0.8em;
+    padding: 4px 8px;
+  }
+
+  .nav-controls .circle-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 1em;
+  }
 }
