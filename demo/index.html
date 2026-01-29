@@ -1,33 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JCarousel Demo</title>
-    <link rel="stylesheet" href="demo.css">
-</head>
-<body>
+    <link rel="stylesheet" href="demo.css" />
+  </head>
+  <body>
+    <div id="orientationOverlay" class="orientation-overlay" aria-hidden="true">
+      <p>
+        This site is best viewed in landscape.<br />Please rotate your device.
+      </p>
+    </div>
     <div class="container">
-        <h1>JCAROUSEL</h1>
-        <p class="subtitle">JAVASCRIPT LIBRARY FOR ONE-DIRECTIONAL SCROLLING WITH ITEM BASED NAVIGATION SUPPORT</p>
-        <div class="separator"></div>
-        
-        <div class="carousel-wrapper">
-            <button class="chevron" onclick="movePrev()">‹</button>
-            <div class="carousel-display" id="carouselDisplay">
-                <!-- Carousel items will be inserted here -->
-            </div>
-            <button class="chevron" onclick="moveNext()">›</button>
-        </div>
+      <h1>JCAROUSEL</h1>
+      <p class="subtitle">
+        JAVASCRIPT LIBRARY FOR ONE-DIRECTIONAL SCROLLING WITH ITEM BASED
+        NAVIGATION SUPPORT
+      </p>
+      <div class="separator"></div>
 
-        <div class="nav-controls">
-            <button onclick="movePrev()">‹ PREV</button>
-            <button class="circle-btn" onclick="zoomIn()">+</button>
-            <button class="circle-btn" onclick="zoomOut()">-</button>
-            <button onclick="moveNext()">NEXT ›</button>
+      <div class="carousel-wrapper">
+        <button class="chevron" onclick="movePrev()">‹</button>
+        <div class="carousel-display" id="carouselDisplay">
+          <!-- Carousel items will be inserted here -->
         </div>
+        <button class="chevron" onclick="moveNext()">›</button>
+      </div>
+
+      <div class="nav-controls">
+        <button onclick="movePrev()">‹ PREV</button>
+        <button class="circle-btn" onclick="zoomIn()">+</button>
+        <button class="circle-btn" onclick="zoomOut()">-</button>
+        <button onclick="moveNext()">NEXT ›</button>
+      </div>
     </div>
 
     <script src="demo.js"></script>
-</body>
+  </body>
 </html>

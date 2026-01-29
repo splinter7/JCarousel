@@ -232,3 +232,32 @@ window.addEventListener("resize", () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => updateDisplay(false), 100);
 });
+
+// Orientation overlay: show on mobile portrait, hide when landscape
+function isMobilePortrait() {
+  return (
+    window.matchMedia("(max-width: 768px)").matches &&
+    window.matchMedia("(orientation: portrait)").matches
+  );
+}
+
+function updateOrientationOverlay() {
+  const overlay = document.getElementById("orientationOverlay");
+  if (!overlay) return;
+  if (isMobilePortrait()) {
+    overlay.classList.add("orientation-overlay--visible");
+    overlay.setAttribute("aria-hidden", "false");
+  } else {
+    overlay.classList.remove("orientation-overlay--visible");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+}
+
+updateOrientationOverlay();
+window.addEventListener("orientationchange", updateOrientationOverlay);
+window
+  .matchMedia("(orientation: portrait)")
+  .addEventListener("change", updateOrientationOverlay);
+window
+  .matchMedia("(max-width: 768px)")
+  .addEventListener("change", updateOrientationOverlay);
