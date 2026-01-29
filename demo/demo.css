@@ -172,7 +172,12 @@ h1 {
   color: #1a1a1a;
 }
 
-/* Orientation overlay (mobile portrait) */
+/* Orientation overlay: hidden on desktop, only shown on mobile portrait */
+.orientation-overlay {
+  display: none;
+}
+
+/* Orientation overlay (mobile portrait only) */
 @media (max-width: 768px) {
   .orientation-overlay {
     position: fixed;
